@@ -46,6 +46,7 @@ import sys, types, time, random, os
 # YOUR INTERFACE TO THE PACMAN WORLD: A GameState #
 ###################################################
 
+
 class GameState:
   """
   A GameState specifies the full game state, including the food, capsules,
@@ -65,7 +66,7 @@ class GameState:
   # Accessor methods: use these to access state data #
   ####################################################
 
-  def getLegalActions( self, agentIndex=0 ):
+  def getLegalActions(self, agentIndex=0):
     """
     Returns the legal actions for the agent specified.
     """

@@ -21,6 +21,7 @@ except:
 # Parts worth reading #
 #######################
 
+
 class Agent:
   """
   An agent must define a getAction method, but may also define the
@@ -28,6 +29,7 @@ class Agent:
 
   def registerInitialState(self, state): # inspects the starting state
   """
+
   def __init__(self, index=0):
     self.index = index
 
@@ -39,25 +41,28 @@ class Agent:
     raiseNotDefined()
 
 class Directions:
-  NORTH = 'North'
-  SOUTH = 'South'
-  EAST = 'East'
-  WEST = 'West'
-  STOP = 'Stop'
+    NORTH = 'North'
+    SOUTH = 'South'
+    EAST = 'East'
+    WEST = 'West'
+    STOP = 'Stop'
 
-  LEFT =       {NORTH: WEST,
-                 SOUTH: EAST,
-                 EAST:  NORTH,
-                 WEST:  SOUTH,
-                 STOP:  STOP}
+    LEFT = {
+        NORTH: WEST,
+        SOUTH: EAST,
+        EAST: NORTH,
+        WEST: SOUTH,
+        STOP: STOP
+    }
 
-  RIGHT =      dict([(y,x) for x, y in list(LEFT.items())])
+    RIGHT = dict([(y,x) for x, y in list(LEFT.items())])
 
-  REVERSE = {NORTH: SOUTH,
-             SOUTH: NORTH,
-             EAST: WEST,
-             WEST: EAST,
-             STOP: STOP}
+    REVERSE = {NORTH: SOUTH,
+               SOUTH: NORTH,
+               EAST: WEST,
+               WEST: EAST,
+               STOP: STOP}
+
 
 class Configuration:
   """
@@ -271,6 +276,7 @@ def reconstituteGrid(bitRep):
 ####################################
 # Parts you shouldn't have to read #
 ####################################
+
 
 class Actions:
   """
