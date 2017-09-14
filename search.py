@@ -18,7 +18,7 @@ Pacman agents (in searchAgents.py).
 """
 
 import util
-
+from game import Directions
 
 class SearchProblem:
     """
@@ -68,10 +68,28 @@ def tinyMazeSearch(problem):
     Returns a sequence of moves that solves tinyMaze.  For any other maze, the
     sequence of moves will be incorrect, so only use this for tinyMaze.
     """
-    from game import Directions
     s = Directions.SOUTH
     w = Directions.WEST
     return [s, s, w, s, w, w, s, w]
+
+
+def _depthSearch(problem, actual_state, path_til_now, answer):
+    if problem.isGoalState(actual_state):
+        return answer
+
+    successors = problem.getSuccessors(actual_state)
+    successors = [x for x in successors if x[0] not in path_til_now]
+    if len(successors) == 0:
+        print("No sucessors!")
+        return None
+
+    for place in successors:
+        print('Going to {}'.format(place))
+        path_til_now.append(place[0])
+        answer.append(place[1])
+        final = _depthSearch(problem, place[0], path_til_now, answer)
+        if final is not None:
+            return final
 
 
 def depthFirstSearch(problem):
@@ -88,6 +106,7 @@ def depthFirstSearch(problem):
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
+    return _depthSearch(problem, problem.getStartState(), [], [])
     "*** YOUR CODE HERE ***"
     util.raiseNotDefined()
 
