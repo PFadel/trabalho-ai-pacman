@@ -18,6 +18,7 @@ Pacman agents (in searchAgents.py).
 """
 
 import util
+import copy
 from game import Directions
 
 class SearchProblem:
@@ -78,9 +79,21 @@ def _depthSearch(problem, actual_state, path_til_now, answer):
         return answer
 
     successors = problem.getSuccessors(actual_state)
-    successors = [x for x in successors if x[0] not in path_til_now]
+    successors = [x for x in successors
+                  if x[0] not in path_til_now]
+
     if len(successors) == 0:
         print("No sucessors!")
+        c = 1
+        while len(successors) == 0:
+            actual_state = path_til_now[-c]
+            if len(answer) > 0:
+                answer.pop()
+            successors = problem.getSuccessors(actual_state)
+            successors = [x for x in successors
+                          if x[0] not in path_til_now]
+            c += 1
+        path_til_now = path_til_now[:-c]
         return None
 
     for place in successors:
