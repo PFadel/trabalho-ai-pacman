@@ -311,7 +311,7 @@ function SearchBox(name, resultsPath, inFrame, label)
 
     var code = searchValue.toLowerCase().charCodeAt(0);
     var idxChar = searchValue.substr(0, 1).toLowerCase();
-    if ( 0xD800 <= code && code <= 0xDBFF && searchValue > 1) // surrogate pair
+    if (0xD800 <= code && code <= 0xDBFF && searchValue > 1) // surrogate pair
     {
       idxChar = searchValue.substr(0, 2);
     }
@@ -375,7 +375,7 @@ function SearchBox(name, resultsPath, inFrame, label)
   {
     if (isActive || // open it
         this.DOMPopupSearchResultsWindow().style.display == 'block'
-       )
+      )
     {
       this.DOMSearchBox().className = 'MSearchBoxActive';
 

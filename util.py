@@ -102,9 +102,9 @@ class PriorityQueueWithFunction(PriorityQueue):
     PriorityQueue.push(self, item, self.priorityFunction(item))
 
 
-def manhattanDistance( xy1, xy2 ):
+def manhattanDistance(xy1, xy2):
   "Returns the Manhattan distance between points xy1 and xy2"
-  return abs( xy1[0] - xy2[0] ) + abs( xy1[1] - xy2[1] )
+  return abs(xy1[0] - xy2[0]) + abs(xy1[1] - xy2[1])
 
 """
   Data structures and functions useful for various course projects
@@ -230,7 +230,7 @@ class Counter(dict):
     """
     return Counter(dict.copy(self))
 
-  def __mul__(self, y ):
+  def __mul__(self, y):
     """
     Multiplying two counters gives the dot product of their vectors where
     each unique label is a vector element.
@@ -300,7 +300,7 @@ class Counter(dict):
       addend[key] = y[key]
     return addend
 
-  def __sub__( self, y ):
+  def __sub__(self, y):
     """
     Subtracting a counter from another gives a counter with the union of all keys and
     counts of the second subtracted from counts of the first.
@@ -421,18 +421,18 @@ def nearestPoint(pos):
   """
   Finds the nearest grid point to a position (discretizes).
   """
-  ( current_row, current_col ) = pos
+  (current_row, current_col) = pos
 
-  grid_row = int( current_row + 0.5 )
-  grid_col = int( current_col + 0.5 )
-  return ( grid_row, grid_col )
+  grid_row = int(current_row + 0.5)
+  grid_col = int(current_col + 0.5)
+  return (grid_row, grid_col)
 
 
 def sign(x):
   """
   Returns 1 or -1 depending on the sign of x
   """
-  if( x >= 0 ):
+  if(x >= 0):
     return 1
   else:
     return -1
@@ -453,12 +453,12 @@ def matrixAsList(matrix, value=True):
   """
   Turns a matrix into a list of coordinates matching the specified value
   """
-  rows, cols = len( matrix ), len( matrix[0] )
+  rows, cols = len(matrix), len(matrix[0])
   cells = []
-  for row in range( rows ):
-    for col in range( cols ):
+  for row in range(rows):
+    for col in range(cols):
       if matrix[row][col] == value:
-        cells.append( ( row, col ) )
+        cells.append((row, col))
   return cells
 
 

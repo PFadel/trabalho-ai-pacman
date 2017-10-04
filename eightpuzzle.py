@@ -21,7 +21,7 @@ class EightPuzzleState:
  the EightPuzzleSearchProblem class.
  """
 
- def __init__( self, numbers ):
+ def __init__(self, numbers):
    """
      Constructs a new eight puzzle from an ordering of numbers.
 
@@ -46,14 +46,14 @@ class EightPuzzleState:
    self.cells = []
    numbers = numbers[:] # Make a copy so as not to cause side-effects.
    numbers.reverse()
-   for row in range( 3 ):
-     self.cells.append( [] )
-     for col in range( 3 ):
-       self.cells[row].append( numbers.pop() )
+   for row in range(3):
+     self.cells.append([])
+     for col in range(3):
+       self.cells[row].append(numbers.pop())
        if self.cells[row][col] == 0:
          self.blankLocation = row, col
 
- def isGoal( self ):
+ def isGoal(self):
    """
      Checks to see if the puzzle is in its goal state.
 
@@ -72,14 +72,14 @@ class EightPuzzleState:
    False
    """
    current = 0
-   for row in range( 3 ):
-    for col in range( 3 ):
+   for row in range(3):
+    for col in range(3):
       if current != self.cells[row][col]:
         return False
       current += 1
    return True
 
- def legalMoves( self ):
+ def legalMoves(self):
    """
      Returns a list of legal moves from the current state.
 
@@ -149,7 +149,7 @@ class EightPuzzleState:
          EightPuzzleState([1, 0, 2, 3, 4, 5, 6, 7, 8]).result('left')
      True
    """
-   for row in range( 3 ):
+   for row in range(3):
       if self.cells[row] != other.cells[row]:
         return False
    return True

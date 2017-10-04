@@ -21,13 +21,13 @@ class KeyboardAgent(Agent):
   SOUTH_KEY = 's'
   STOP_KEY = 'q'
 
-  def __init__( self, index = 0 ):
+  def __init__(self, index = 0):
 
     self.lastMove = Directions.STOP
     self.index = index
     self.keys = []
 
-  def getAction( self, state):
+  def getAction(self, state):
     from graphicsUtils import keys_waiting
     from graphicsUtils import keys_pressed
     keys = keys_waiting() + keys_pressed()
