@@ -7,7 +7,8 @@
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
 from graphicsUtils import *
-import math, time
+import math
+import time
 from game import Directions
 
 ###########################

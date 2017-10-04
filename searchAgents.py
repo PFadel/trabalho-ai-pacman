@@ -468,8 +468,24 @@ def foodHeuristic(state, problem):
     problem.heuristicInfo['wallCount']
     """
     position, foodGrid = state
-    "*** YOUR CODE HERE ***"
-    return 0
+    listPositions = foodGrid.asList()
+    if(len(listPositions) == 0):
+        return 0
+
+    chosen = listPositions[0]
+    chosenDistance = distance(position, chosen)
+
+    for oponent in listPositions[1:]:
+        oponentDistance = distance(position, oponent)
+        if(oponentDistance < chosenDistance):
+            chosenDistance = oponentDistance
+            chosen = oponent
+
+    return distance(position, chosen)
+
+
+def distance(a, b):
+    return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 
 class ClosestDotSearchAgent(SearchAgent):

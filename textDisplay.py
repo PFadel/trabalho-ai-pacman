@@ -16,16 +16,16 @@ QUIET = False # Supresses output
 class NullGraphics:
   def initialize(self, state, isBlue = False):
     pass
-  
+
   def update(self, state):
     pass
-  
+
   def pause(self):
     time.sleep(SLEEP_TIME)
-    
+
   def draw(self, state):
     print(state)
-  
+
   def finish(self):
     pass
 
@@ -34,13 +34,13 @@ class PacmanGraphics:
     if speed != None:
       global SLEEP_TIME
       SLEEP_TIME = speed
-  
+
   def initialize(self, state, isBlue = False):
     self.draw(state)
     self.pause()
     self.turn = 0
     self.agentCounter = 0
-    
+
   def update(self, state):
     numAgents = len(state.agentStates)
     self.agentCounter = (self.agentCounter + 1) % numAgents
@@ -54,12 +54,12 @@ class PacmanGraphics:
         self.pause()
     if state._win or state._lose:
       self.draw(state)
-    
+
   def pause(self):
     time.sleep(SLEEP_TIME)
-    
+
   def draw(self, state):
     print(state)
-  
+
   def finish(self):
     pass

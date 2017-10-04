@@ -8,7 +8,7 @@
 
 from util import *
 from util import raiseNotDefined
-import time, os
+import time
 import traceback
 
 try:

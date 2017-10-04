@@ -7,11 +7,7 @@
 # For more info, see http://inst.eecs.berkeley.edu/~cs188/sp09/pacman.html
 
 import sys
-import math
-import random
-import string
 import time
-import types
 import tkinter
 
 _Windows = sys.platform == 'win32'  # True if on Win95/98/NT

@@ -155,7 +155,7 @@ Implemente o algoritmo de busca de custo uniforme (checando estados repetidos) n
 ```bash
 python pacman.py -l mediumMaze -p SearchAgent -a fn=ucs
 python pacman.py -l mediumDottedMaze -p StayEastSearchAgent
-python pacman.py -l mediumScaryMaze -p StayWestSearchAgentA* search
+python pacman.py -l mediumScaryMaze -p StayWestSearchAgent
 ```
 
 ## Etapa 4 (2 pontos)
