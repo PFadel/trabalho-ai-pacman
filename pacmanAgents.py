@@ -12,6 +12,7 @@ import random
 import game
 import util
 
+
 class LeftTurnAgent(game.Agent):
   "An agent that turns left at every opportunity"
 

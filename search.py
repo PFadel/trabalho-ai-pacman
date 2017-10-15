@@ -18,8 +18,8 @@ Pacman agents (in searchAgents.py).
 """
 
 import util
-import copy
 from game import Directions
+
 
 class SearchProblem:
     """
@@ -83,10 +83,10 @@ def depthSearch(problem, state, visited):
             return [direction]
 
         if state not in visited:
-            search = depthSearch(problem, state, visited)
-            if len(search) > 0:
-                search.insert(0, direction)
-                return search
+            path = depthSearch(problem, state, visited)
+            if len(path) > 0:
+                path.insert(0, direction)
+                return path
     return []
 
 
@@ -137,7 +137,7 @@ def breadthFirstSearch(problem):
 
 
 def graphSearch(problem, allPaths):
-    exploredNodes = []
+    visited = []
     allPaths.push([(problem.getStartState(), "Stop", 0)])
 
     while not allPaths.isEmpty():
@@ -152,11 +152,11 @@ def graphSearch(problem, allPaths):
         if problem.isGoalState(lastNodeOfThePath):
             return [x[1] for x in path][1:]
 
-        if lastNodeOfThePath not in exploredNodes:
-            exploredNodes.append(lastNodeOfThePath)
+        if lastNodeOfThePath not in visited:
+            visited.append(lastNodeOfThePath)
 
             for nextNode in problem.getSuccessors(lastNodeOfThePath):
-                if nextNode[0] not in exploredNodes:
+                if nextNode[0] not in visited:
                     nextNodePath = path[:]
                     nextNodePath.append(nextNode)
                     allPaths.push(nextNodePath)
@@ -166,9 +166,17 @@ def graphSearch(problem, allPaths):
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
-    costLambda = lambda aPath: problem.getCostOfActions([x[1] for x in aPath])
-    allPaths = util.PriorityQueueWithFunction(costLambda)
+    cost_analyser = CostAnalyser(problem)
+    allPaths = util.PriorityQueueWithFunction(cost_analyser.costOfActionsInPath)
     return graphSearch(problem, allPaths)
+
+
+class CostAnalyser(object):
+    def __init__(self, problem):
+        self.problem = problem
+
+    def costOfActionsInPath(self, path):
+        return self.problem.getCostOfActions([x[1] for x in path])
 
 
 def nullHeuristic(state, problem=None):
@@ -180,23 +188,24 @@ def nullHeuristic(state, problem=None):
 
 
 def aStarSearch(problem, heuristic=nullHeuristic):
-    nos = []
-    queue = util.PriorityQueue()
     start = problem.getStartState()
+    queue = util.PriorityQueue()
+    nodes = []
+
     queue.push((start, []), heuristic(start, problem))
     while not queue.isEmpty():
-        no, actions = queue.pop()
+        node, actions = queue.pop()
 
-        if problem.isGoalState(no):
+        if problem.isGoalState(node):
             return actions
 
-        nos.append(no)
+        nodes.append(node)
 
-        for coord, direction, cost in problem.getSuccessors(no):
-            if coord not in nos:
+        for coord, direction, cost in problem.getSuccessors(node):
+            if coord not in nodes:
                 new_actions = actions + [direction]
-                custo = problem.getCostOfActions(new_actions) + heuristic(coord, problem)
-                queue.push((coord, new_actions), custo)
+                cost = problem.getCostOfActions(new_actions) + heuristic(coord, problem)
+                queue.push((coord, new_actions), cost)
     return []
 
 
